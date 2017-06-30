@@ -1,0 +1,31 @@
+{% extends 'webform/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+<style>
+    input {
+        width: 30%;
+        height: 10%;
+    }
+</style>
+<div id="form-info">
+    <h2> Enter the recipients you would like the mail to </h2>
+    <p style="text-align: center;"> You can send to up to four recipients. Please fill in the email with the proper 
+        body and subject lines. </p>
+</div>
+<div style="text-align: center;">
+    <form style="text-align: center;" method="post">
+        {% csrf_token %}
+        <div id="form" style="text-align: center; border: 2px #ccc" >
+            <p> {{ form.subject.label_tag}} {{form.subject}} </p>
+            <p> {{ form.rec_one.label_tag}} {{form.rec_one}} {{form.rec_two.label_tag}} {{form.rec_two}} </p>
+            <p> {{ form.rec_three.label_tag}} {{form.rec_three}} {{form.rec_four.label_tag}} {{form.rec_four}} </p>
+            <p> {{ form.body.label_tag }} {{form.body}} </p>
+        </div>
+        <div style="padding-bottom:50px">
+            <button type="submit" class="btn btn-primary" style="background-color: #4CAF50; text-align: center;">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

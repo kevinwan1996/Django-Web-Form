@@ -1,0 +1,10 @@
+{% extends 'webform/base.html' %}
+
+{%block content %}
+{% if user.is_authenticated %}
+<div class="container">
+	<h2> You're email has been sent successfully. </h2>
+</div>
+{% endif %}
+
+{% endblock %}

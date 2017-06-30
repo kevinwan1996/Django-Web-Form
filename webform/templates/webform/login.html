@@ -1,0 +1,33 @@
+{% extends "webform/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+  {% if error %}
+    <p><b><font color="red">Error: </font></b>{{ error }}</p>
+  {% endif %}
+<div style="text-align: center;">
+  <form action="" method="post" style="border: 3px solid #f1f1f1; width: 70%">
+      {% csrf_token %}
+      <div class="imgcontainer" style="text-align: center; margin: 24px 0 12px 0">
+        <img src="{% static 'img/images/signup.jpeg' %}" alt="Avatar" class="avatar" style="width: 20%; border-radius: 20%">
+      </div>
+      <div style="padding: 16px">
+        <label for="username">User name:</label><br>
+        <input type="text" name="username" value="" id="username" style="width: 60%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; box-sizing: border-box;"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" name="password" value="" id="password" style="width: 60%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; box-sizing: border-box;" ><br>
+      </div>
+      <div style="padding:10px">
+        <input class="btn btn-primary" id="login-button" type="submit" value="Login" style="background-color: #4CAF50; width: 20%" />
+        <input type="hidden" name="next" value="{{ next|escape }}" />
+      </div>
+      <div class="container" style="background-color:#f1f1f1; width: 100%;">
+        <button type="button" class="btn btn-primary" style="background-color: #f44336; float: left"> Cancel </button>
+        <span class="psw" style="float: right; padding-top: 16px"> Forgot <a href="#"> password? </a></span>
+      </div>
+
+  </form>
+</div>
+
+
+{% endblock %}

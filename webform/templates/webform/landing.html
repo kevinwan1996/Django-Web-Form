@@ -1,0 +1,225 @@
+{% extends 'webform/base.html' %}
+
+{%block content %}
+{% load staticfiles %}
+{% if user.is_authenticated %}
+<div class="" style="background-color: lemonchiffon">
+	<h2> Welcome, {% if user.first_name %} {{user.first_name}}! {% else %} {{user.username}}! {% endif %} </h2>
+</div>
+{% endif %}
+<style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+	body {
+    padding-top: 54px;
+	}
+
+	@media (min-width: 992px) {
+		body {
+			padding-top: 56px;
+		}
+	}
+	.business-header {
+		height: 50vh;
+		min-height: 300px;
+		background: url("{% static '/img/images/background.jpg' %}") center center no-repeat scroll;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		background-size: cover;
+		-o-background-size: cover;
+	}
+	.card {
+		height: 100%;
+	}
+	.card {
+		position: relative;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		background-color: #fff;
+		border: 1px solid rgba(0,0,0,.125);
+		border-radius: .25rem;
+	}
+	.card-text:last-child {
+    margin-bottom: 0;
+	}
+	.card-img-top {
+    border-top-right-radius: calc(.25rem - 1px);
+    border-top-left-radius: calc(.25rem - 1px);
+	}
+	.img-fluid {
+		max-width: 100%;
+		height: auto;
+	}
+	img {
+		vertical-align: middle;
+	}
+	img {
+		border-style: none;
+	}
+	.card-block {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 auto;
+		-ms-flex: 1 1 auto;
+			flex: 1 1 auto;
+	padding: 1.25rem;
+	}
+	.card-footer:last-child {
+		border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
+	}
+	.card-footer {
+		padding: .75rem 1.25rem;
+		background-color: #f7f7f9;
+		border-top: 1px solid rgba(0,0,0,.125);
+	}
+	.my-4 {
+		margin-top: 1.5rem!important;
+		margin-bottom: 1.5rem!important;
+	}
+	.col-sm-4 {
+		-webkit-box-flex: 0;
+		-webkit-flex: 0 0 33.333333%;
+		-ms-flex: 0 0 33.333333%;
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%;
+	}
+	.py-5 {
+    padding-top: 3rem!important;
+    padding-bottom: 3rem!important;
+	}
+	.bg-inverse {
+    background-color: #292b2c!important;
+	}		
+	.col-sm-8 {
+		-webkit-box-flex: 0;
+		-webkit-flex: 0 0 66.666667%;
+		-ms-flex: 0 0 66.666667%;
+		flex: 0 0 66.666667%;
+		max-width: 66.666667%;
+	}
+	.row {
+		margin-right: -15px;
+		margin-left: -15px;
+	}
+	.container {
+    width: 1140px;
+    max-width: 100%;
+	}
+	.btn-primary {
+		color: #fff;
+		background-color: #0275d8;
+		border-color: #0275d8;
+	}
+	.col-lg-12 {
+		-webkit-box-flex: 0;
+		-webkit-flex: 0 0 100%;
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+	}
+	.text-white {
+    color: #fff!important;
+	}
+	.display-3 {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+	}
+	.mt-4 {
+    margin-top: 1.5rem!important;
+	}
+</style>
+	<header class="business-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="display-3 text-white mt-4">Independent Verification and Validation</h1>
+                </div>
+            </div>
+        </div>
+    </header><br>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-8">
+                <h2 class="mt-4">What is this form used for?</h2>
+                <p>A web form for inputting the Independent Verification and Validation information that was previously entered and sent in through the excel sheets. </p> <br>
+                <p>This site will host the forms for IV&V, Programmatic, and CMS Response information. This form will allow for the forms to be directly mailed and transferred through the site, speeding up the process of information transfer.</p>
+                <p>
+					<br>
+                    <a class="btn btn-primary btn-lg" href="https://www.hhs.gov/ocio/eplc/EPLC%20Archive%20Documents/14%20-%20IVV/eplc_ivv_practices_guide.pdf">Learn More about IV&V &raquo;</a>
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <h2 class="mt-4">Contact Us</h2>
+                <address>
+                    <strong>Mitre</strong>
+                    <br>7515 Colshire Drive
+                    <br>McLean, VA 22102
+                    <br>
+                </address>
+                <address>
+                    <i class="glyphicon glyphicon-phone"></i>: (703)-861-7780
+                    <br>
+                    <i class="glyphicon glyphicon-envelope"></i>: kjwan@mitre.org
+                </address>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-sm-4 my-4">
+                <div class="card">
+                    <img class="card-img-top img-fluid" src="{% static 'img/images/header.jpg' %}" alt="">
+                    <div class="card-block">
+                        <h4 class="card-title">IV&V Form</h4>
+                        <p class="card-text">This form is to be used by the Independent Contractors to submit their findings back to CMS. </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/state" class="btn btn-primary">IV&V Form</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 my-4">
+                <div class="card">
+                    <img class="card-img-top img-fluid" src="{%static 'img/images/checked.jpg' %}" alt="">
+                    <div class="card-block">
+                        <h4 class="card-title">Programmatic Form</h4>
+                        <p class="card-text">Checklist for the IV&V Contractor to ensure that all the review criteria have been fulfilled by the states.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">Programmatic Form</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 my-4">
+                <div class="card">
+                    <img class="card-img-top img-fluid" src="{% static 'img/images/response.jpg' %}" alt="">
+                    <div class="card-block">
+                        <h4 class="card-title">CMS Reponse</h4>
+                        <p class="card-text">The CMS Team member's response to the state progress report that was submitted.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary">CMS Response Form</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+{% endblock %}

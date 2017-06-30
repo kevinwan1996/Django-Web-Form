@@ -1,0 +1,26 @@
+{% extends 'webform/base.html' %}
+
+{% block content %}
+	<h2>State Information</h2>
+    <div class="state-form">
+		<form method="post">
+	    	{% csrf_token %}
+	    	<!-- {% for field in form %}
+	      		<p>
+	        	{{ field.label_tag }}<br>
+	        	<div class="field">
+	        	{{ field }}
+	        	</div>
+	        	{% if field.help_text %}
+	         	 <small style="color: grey">{{ field.help_text }}</small>
+	        	{% endif %}
+	        	{% for error in field.errors %}
+	          	<p style="color: red">{{ error }}</p>
+	        	{% endfor %}
+	      	</p> -->
+<!-- 	    	{% endfor %} -->
+			{{ form.as_p }}
+			<button type="submit">Submit</button>
+	  	</form>
+	</div>
+{% endblock %}

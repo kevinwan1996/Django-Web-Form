@@ -1,0 +1,76 @@
+{% extends 'webform/base.html' %}
+
+{% block content %}
+    <div class="signup-form">
+		<form method="post" class="form" accept-charset="utf-8" role="form" style="border: 1px solid black; width:70%">
+			<legend> Sign Up </legend>
+	    	{% csrf_token %}
+			<div class="col-md-12">
+				<div class="col-md-6">
+					<div class="form-group">
+						{{form.first_name.label_tag}}
+						<p>{{form.first_name}}</p>
+						<small style="color: grey">{{form.first_name.help_text}}</small>
+						{% for error in form.first_name.errors %}
+						<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						{{form.last_name.label_tag}}
+						<p>{{form.last_name}}</p>
+						<small style="color: grey">{{form.last_name.help_text}}</small>
+						{% for error in form.last_name.errors %}
+						<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						{{form.username.label_tag}}
+						<p>{{form.username}}</p>
+						<small style="color: grey">{{form.username.help_text}}</small>
+						{% for error in form.username.errors %}
+						<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						{{form.email.label_tag}}
+						<p>{{form.email}}</p>
+						<small style="color: grey">{{form.email.help_text}}</small>
+						{% for error in form.email.errors %}
+						<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						{{form.password1.label_tag}}
+						<p>{{form.password1}}</p>
+						<small style="color: grey">{{form.password1.help_text}}</small>
+						{% for error in form.password1.errors %}
+						<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						{{form.password2.label_tag}}
+						{{form.password2}}
+						<p><small style="color: grey">{{form.password2.help_text}}</small></p>
+						{% for error in form.password2.errors %}
+						<p style="color: red">{{ error }}</p>
+						{% endfor %}
+					</div>
+				</div>
+
+	    	<div style="padding-bottom:50px">
+	    		<button type="submit" class="btn btn-primary" style="background-color: #4CAF50; pad">Sign up</button>
+	    	</div>
+	  	</form>
+	</div>
+
+{% endblock %}

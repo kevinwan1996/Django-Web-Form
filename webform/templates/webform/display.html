@@ -1,0 +1,264 @@
+{% extends 'webform/base.html' %}
+{% load staticfiles %}
+
+{%block content %}
+
+<style>
+	#pdf-button {
+		width: 100%;
+	}
+</style>
+<div class="header" style="background-color: #E9967A;">
+	<h2> General information </h2>
+</div>
+<br>
+<div class="info" style="padding-left:20px;">
+	<div style="width: 300px; float: left;">
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> State: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ state_results.state_name}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Project Name: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ ivv_results.project_name}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Program Name: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ ivv_results.program_name}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Progress Report Date: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ ivv_results.progress_report_date}} </font>
+		</div>
+
+	</div>
+	<div style="width: 300px; float: left;">
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Point of Contact Name: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ state_results.POC_name}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Point of Contact Email: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ state_results.POC_email}} </font>
+		</div>	
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Submitter Name: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ submitter_results.submitter_name}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Submitter Title: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ submitter_results.submitter_title}} </font>
+		</div>		
+	</div>
+	<div style="width: 300px; float: left;">
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Submitter Name: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ submitter_results.submitter_name}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Submitter Email: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ submitter_results.submitter_email}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1">  Activity One Consult Date: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1">{{ ivv_results.activity_one_consult_date}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Target RFP Release Date: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ ivv_results.target_RFP_release_date}} </font>
+		</div>
+
+	</div>
+	<div style="width: 300px; float: left;">
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Target IVV On Board Date: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ ivv_results.target_IVV_on_board_date}} </font>
+		</div>
+		<br><br>
+		<div style="width: 10%;  display:inline;" >
+			<strong> <font size="+1"> Next Progress Report Date: </font> </strong>
+		</div>
+		<div style=" width: 10%;  display:inline;">
+			<font size="+1"> {{ ivv_results.next_progress_report_date}} </font>
+		</div>
+	</div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+<div class="header" style="background-color: #E9967A;">
+	<h2> Executive Summary  </h2>
+</div>
+<div style="padding-left: 20px;">
+	<p><strong><font size="+2"> Executive Summary: </font></strong></p>
+	<p> <font size="+1"> {{ivv_results.executive_summary}} </font></p>
+</div>
+<br><br>
+<div class="header" style="background-color: #E9967A;">
+	<h2> Project Management  </h2>
+</div>
+<div class="container">
+	<table class="table table-bordered">
+		<tr>
+			<th> Total Budget </th>
+			<th> Earned Value(%) </th>
+			<th> Budget Variance(%) </th>
+			<th> Schedule Variance(%) </th>
+			<th> Other </th>
+		</tr>
+		<tr>
+			<td> {{ ivv_results.total_budget }} </td>
+			<td> {{ ivv_results.earned_value }} </td>
+			<td> {{ ivv_results.budget_variance }} </td>
+			<td> {{ ivv_results.schedule_variance}} </td>
+			<td> {{ ivv_results.other }} </td>
+		</tr>
+	</table>
+</div>
+<div class="header" style="background-color: #E9967A;">
+	<h2> Life Cycle Status and Schedule  </h2>
+</div>
+<div style="padding-left: 15px;">
+	{% for lc in lc_results %}
+		<table class="table table-bordered"style="width: 100%">
+			<tr>
+				<th> Status: </th>
+				<th> Module Business: </th>
+				<th> Module Functional: </th>
+				<th> Target Approval Date: </th>
+				<th> Target Development Date: </th>
+				<th> Target R1: </th>
+				<th> Target R2: </th>
+				<th> Target Go Live: </th>
+				<th> Target R3: </th>
+			</tr>
+			<tr class="table-active">
+				<td> {{ lc.status }} </td>
+				<td> {{ lc.module_business }} </td>
+				<td> {{ lc.module_functional }} </td>
+				<td> {{ lc.target_approval_date }} </td>
+				<td> {{ lc.target_development_date }} </td>
+				<td> {{ lc.target_R1 }} </td>
+				<td> {{ lc.target_R2 }} </td>
+				<td> {{ lc.target_go_live }} </td>
+				<td> {{ lc.target_R3 }} </td>	
+			</tr>
+			<br>		
+		</table>
+	{% endfor %}
+</div>
+<div class="header" style="background-color: #E9967A;">
+	<h2> Risks </h2>
+</div>
+<div style="padding-left: 15px">
+	{% for risk in risk_results %}
+		<table class="table table-bordered" style="width: 100%">
+			<thead class="thead-inverse">
+				<tr>
+					<th> Risk ID Number: </th>
+					<th> Title: </th>
+					<th> Description: </th>
+					<th> Probability: </th>
+					<th> Impact: </th>
+					<th> Score: </th>
+					<th> Target Resolution Date: </th>
+					<th> Status:</th>
+				</tr>
+			</thead>
+			<tr scope="">
+				<td> {{ risk.risk_ID_number }} </td>
+				<td> {{ risk.title }} </td>
+				<td> {{ risk.description }} </td>
+				<td> {{ risk.probability }} </td>
+				<td> {{ risk.impact }} </td>
+				<td> {{ risk.score }} </td>
+				<td> {{ risk.target_resolution_date }} </td>
+				<td> {{ risk.status }} </td>
+			</tr>
+			<br>		
+		</table>
+	{% endfor %}
+</div>
+<div class="header" style="background-color: #E9967A;">
+	<h2> Recommendations </h2>
+</div>
+<div style="padding-left: 15px">
+	{% for rec in rec_results %}
+		<table class="table table-bordered"style="width: 100%">
+			<tr>
+				<th> Recommendation Number: </th>
+				<th> Recommendation Date: </th>
+				<th> Recommendation: </th>
+				<th> Resolved: </th>
+				<th> Comments: </th>
+			</tr>
+			<tr scope="row">
+				<td> {{ rec.recommendation_number }} </td>
+				<td> {{ rec.recommendation_date }} </td>
+				<td> {{ rec.recommendation }} </td>
+				<td> {{ rec.resolved }} </td>
+				<td> {{ rec.comments }} </td>
+			</tr>
+			<br>		
+		</table>
+	{% endfor %}
+</div>
+<br><br>
+<div class="button" style="text-align: center;">
+	<script>
+		function disable() {
+			document.getElementById('pdf-button').disabled = 'disabled';
+			document.getElementById('pdf-form').submit()
+		}		
+	</script>
+	<form action="../pdf" id="pdf-form">
+    	<input onclick="disable();" class="btn btn-primary" id="pdf-button" type="submit" value="Generate PDF" style="background-color: #4CAF50;" />
+    </form>
+	<form action="../" style="float: right;">
+    	<input class="btn btn-primary" id="home-button" type="submit" value="Return Home" style="background-color: #4CAF50; width: 100%" />
+    </form>
+	<form action="../email">
+    	<input class="btn btn-primary" id="email-button" type="submit" value="Email this PDF?" style="background-color: #4CAF50; width: 100%;" />
+    </form>
+
+</div>
+
+
+<!-- {% for item in lc_results %} 
+	<p> Status: {{item.status}} </p>
+{% endfor %} -->
+
+{% endblock %}
