@@ -26,6 +26,11 @@ class StateForm(forms.ModelForm):
 	# state_name = forms.CharField(max_length=30, required=True)
 	# poc_name = forms.CharField(max_length=30, required=True)
 	# poc_email = forms.CharField(max_length=50, required=True)
+	def __init__(self, *args, **kwargs):
+		super(StateForm, self).__init__(*args, **kwargs)
+		self.fields['POC_email'].widget.attrs.update({
+			'id': 'state_POC_email'
+		})
 
 	class Meta:
 		model = State
@@ -66,6 +71,16 @@ class RecForm(forms.ModelForm):
 	class Meta:
 		model = Recommendations
 		exclude = ('rec_id', 'ivv_id',)
+class GeneralInfoForm(forms.Form):
+	state_name = forms.CharField(max_length=15)
+	project_name = forms.CharField(max_length=15)
+	program_name = forms.CharField(max_length=15)
+class ExecAndBudgetForm(forms.Form):
+	executive_summary = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Executive Summary'}), required=False)
+	total_budget = forms.CharField(max_length=4)
+	earned_value = forms.CharField(max_length=4)
+	budget_variance = forms.CharField(max_length=4)
+	schedule_variance = forms.CharField(max_length=4)
 
 # class TodoListForm(forms.ModelForm):
 #   class Meta:

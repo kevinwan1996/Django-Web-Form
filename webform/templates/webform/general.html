@@ -237,13 +237,113 @@
 	      });
 	      // Update the total form count
 	      $('#id_' + prefix + '-TOTAL_FORMS').val(formCount + 1); 
-	      alert($('#id_' + prefix + '-TOTAL_FORMS').val());
 	    } // End if
 	    else {
 	      alert("Sorry, you can only enter a maximum of ten items.");
 	    }
 	    return false;
 	  }
+		function showhide(headerId, instructionId, fieldId, button1, button2, headerId2, instructionId2, fieldId2) {
+			headerId2 = headerId2 || 0;
+			instructionId2 = instructionId2 || 0;
+			fieldId2 = fieldId2 || 0;
+
+			
+
+			document.body.scrollTop = document.documentElement.scrollTop = 0;
+			var divs = (document.getElementsByClassName("toggleable"));
+			var divsArray = Array.prototype.slice.call(divs);
+
+
+			var header = document.getElementById(headerId);
+			var instruction = document.getElementById(instructionId);
+			var field = document.getElementById(fieldId);
+			var next = document.getElementById(button1);
+			var prev = document.getElementById(button2);
+
+			divsArray.forEach(function(entry) {
+				entry.style.display = 'none';
+			})
+
+			header.style.display = 'block';
+			instruction.style.display = 'block';
+			field.style.display = 'block';
+
+			var columns = field.getElementsByTagName('div');
+			for (var i = 0; i < columns.length; i++) {
+				columns[i].style.display = 'block';
+			}
+			if (headerId2 != 0 && instructionId2 != 0 && fieldId2 != 0) {
+				var header2 = document.getElementById(headerId2);
+				var instruction2 = document.getElementById(instructionId2);
+				var field2 = document.getElementById(fieldId2);		
+
+				header2.style.display = 'block';
+				instruction2.style.display = 'block';
+				field2.style.display = 'block';
+				var columns2 = field2.getElementsByTagName('div');
+				for (var j = 0; j < columns2.length; j++) {
+					columns2[j].style.display = 'block';
+				}
+			}
+			next.style.display = 'block';
+			prev.style.display = 'block';
+		}
+		function showhideLC(headerId, instructionId, titleId1, containerId, lcId, titleId2, containerId2, lcId2, button1, button2) {
+			document.body.scrollTop = document.documentElement.scrollTop = 0;
+			var divs = (document.getElementsByClassName("toggleable"));
+			var divsArray = Array.prototype.slice.call(divs);
+
+
+			var header = document.getElementById(headerId);
+			var instruction = document.getElementById(instructionId);
+			var title1 = document.getElementById(titleId1);
+			var container = document.getElementById(containerId);
+			var lc = document.getElementById(lcId);
+			var title2 = document.getElementById(titleId2);			
+			var container2 = document.getElementById(containerId2);
+			var lc2 = document.getElementById(lcId2);
+			var next = document.getElementById(button1);
+			var prev = document.getElementById(button2);
+
+			divsArray.forEach(function(entry) {
+				entry.style.display = 'none';
+			})
+
+			header.style.display = 'block';
+			instruction.style.display = 'block';
+			title1.style.display = 'block';
+			container.style.display = 'block';
+			title2.style.display = 'block';
+			container2.style.display = 'block';
+			lc.style.display = 'block';
+			lc2.style.display = 'block';
+			next.style.display = 'block';
+			prev.style.display = 'block';
+		}
+		function homepage() {
+			divs = document.getElementsByClassName("toggleable");
+			var divsArray = Array.prototype.slice.call(divs);
+
+			divsArray.forEach(function(entry) {
+				entry.style.display = 'none';
+			})
+			var homepages = document.getElementsByClassName('homepage');
+			for (var k = 0; k < homepages.length; k++) {
+				homepages[k].style.display = 'block';
+			}
+		}
+		function checkEmail() {
+			console.log("Function is called");
+			if (document.getElementById('header-1').value == 'General Information') {
+				alert('emails is wrong');
+				return false;
+			}
+			return false;
+		}
+		$("#submit").click(function () {
+			console.log("HELLO BITCH")
+		})
 	  // Register the click event handlers
 	  //event handlers for recommendations
 	  $("#add-rec").click(function() {
@@ -271,124 +371,155 @@
 	  });
 	  $(".delete-lc").click(function() {
 	    return deleteFormLC(this, 'lc');
-	  });
+		});
+		//the tab section
+		$("#general-button").click(function() {
+			return showhide('general-title', 'general-instruction', 'general-field', 'gen-button-next', 'gen-button-prev');
+		});
+		$("#exec-button").click(function() {
+			return showhide('exec-header', 'exec-instructions', 'exec-fields', 'exec-button-next', 'exec-button-prev', 'proj-manage-header', 'proj-manage-instruction', 'proj-manage-fields');
+		});		
+		$("#lc-button").click(function() {
+			return showhideLC('lc-header', 'lc-instructions', 'lc-title', 'lc-div', 'lc', 'lc2-header', 'lc2-div', 'lc2', 'lc-button-next', 'lc-button-prev');
+		});
+		$("#risk-button").click(function() {
+			return showhideLC('risk-title', 'risk-instruction', 'risk-div', 'risk', 'rec-header', 'rec-instruction', 'rec-div', 'rec', 'risk-button-prev', 'submit');
+		});
+		//the next buttons
+		$("#next-home-page").click(function() {
+			return showhide('general-title', 'general-instruction', 'general-field', 'gen-button-next', 'gen-button-prev');
+		});
+		$("#next-gen-page").click(function() {
+			return showhide('exec-header', 'exec-instructions', 'exec-fields', 'exec-button-next', 'exec-button-prev', 'proj-manage-header', 'proj-manage-instruction', 'proj-manage-fields');
+		});	
+		$("#next-exec-page").click(function() {
+			return showhideLC('lc-header', 'lc-instructions', 'lc-title', 'lc-div', 'lc', 'lc2-header', 'lc2-div', 'lc2', 'lc-button-next', 'lc-button-prev');
+		});
+		$("#next-lc-page").click(function() {
+			return showhideLC('risk-title', 'risk-instruction', 'risk-div', 'risk', 'rec-header', 'rec-instruction', 'rec-div', 'rec', 'risk-button-prev', 'submit');
+		});
+		//the prev buttons
+		$("#prev-gen-page").click(function() {
+			return homepage();
+		})
+		$("#prev-exec-page").click(function() {
+			return showhide('general-title', 'general-instruction', 'general-field', 'gen-button-next', 'gen-button-prev');
+		});
+		$("#prev-lc-page").click(function() {
+			return showhide('exec-header', 'exec-instructions', 'exec-fields', 'exec-button-next', 'exec-button-prev', 'proj-manage-header', 'proj-manage-instruction', 'proj-manage-fields');
+		});	
+		$("#prev-risk-page").click(function() {
+			return showhideLC('lc-header', 'lc-instructions', 'lc-title', 'lc-div', 'lc', 'lc2-header', 'lc2-div', 'lc2', 'lc-button-next', 'lc-button-prev');
+		});
 	});
 	</script>
-
-	<div class="general-header" style="background-color: #39CCCC;">
-		<h2>General Information</h2>
+	<nav class="pages">
+		<a class="navbar-brand" id="general-button" href="javascript:showhide()"> General Information </a>
+		<a class="navbar-brand" id="exec-button" href="javascript:showhide()"> Executive Summary and Project Management Office Status</a>
+		<a class="navbar-brand" id="lc-button" href="javascript:showhide()"> Life Cycles </a>
+		<a class="navbar-brand" id="risk-button" href="javascript:showhide()"> Risks and Recommendations </a>
+	</nav>
+	<br><br>
+	<div id="general-title" class="toggleable" style="background-color: #39CCCC; display: none;">
+		<h2 id="header-1" >General Information</h2>
 	</div>
-	<div class="instruction">
+	<div id="general-instruction" class="instruction toggleable" style="display:none; white-space: nowrap; overflow: hidden;">  
 		<p> <strong>Instruction: </strong> This section includes the general information for the progress report. <strong> IV&V Contractor </strong> to enter state name, project name, program name (select from the drop down menu), and provide progress report date. Also include POC info for State, and submitter of this report. Also provide dates for initial consult, IV&V RFP, IV&V on-board, and next progress report. Please enter all dates in the format MM-DD-YY </p>
 	</div>
-	<form method="post">
+	<form method="post" onSubmit="return checkEmail(this);">
 		{% csrf_token %}
-	    <div class="general-form">
-		    <div class="column-one" style="width: 300px; height:260px; border: 1px solid green;">
-		   		<p> {{ state_form.state_name.label_tag }}<br> 
-		    		{{ state_form.state_name }}
-				</p>
-				<p> {{ ivv_form.project_name.label_tag}}<br>
-		    		{{ ivv_form.project_name}}
-		  		</p>
-		   		<p> {{ ivv_form.program_name.label_tag}}<br>
-		   			{{ ivv_form.program_name}}
-			   	</p>
-			   	<p> {{ ivv_form.progress_report_date.label_tag}}<br>
-					{{ ivv_form.progress_report_date}}
-		    	</p>
+	    <div id="general-field" class="toggleable" style="display: none">
+		    <div class="column-one toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
+		   		<p> {{ state_form.state_name.label_tag }} </p> 
+		    	<p>	{{ state_form.state_name }} </p>
+					<p> {{ ivv_form.project_name.label_tag}} </p>
+		    	<p>	{{ ivv_form.project_name}} </p>
+		   		<p> {{ ivv_form.program_name.label_tag}} </p>
+		   		<p>	{{ ivv_form.program_name}} </p>
+			   	<p> {{ ivv_form.progress_report_date.label_tag}} </p>
+					<p> {{ ivv_form.progress_report_date}} </p>
 	    	</div>
-		    	<div class="column-two" style="width: 300px; height:260px; border: 1px solid green;">
-		    	<p> {{state_form.POC_name.label_tag }}<br>
-		    		{{state_form.POC_name}}
-		   		</p>
-		   		<p> {{state_form.POC_email.label_tag}}<br>
-		   			{{state_form.POC_email}}
-		   		</p>
-	    		<p> {{submitter_form.submitter_name.label_tag}}<br>
-	    			{{submitter_form.submitter_name}}
-		    	</p>
-		    	<p> {{submitter_form.submitter_title.label_tag}}<br>
-		   			{{submitter_form.submitter_title}}
-		   		</p>
-		   	</div>
-		   	<div class="column-three" style="width: 300px; height:260px; border: 1px solid green;">
-	    		<p> {{submitter_form.submitter_email.label_tag}}<br>
-	    			{{submitter_form.submitter_email}}
-		    	</p>
-		    	<p> {{submitter_form.submitter_phone.label_tag}}<br>
-		   			{{submitter_form.submitter_phone}}
-		   		</p>
-		   		<p> {{ivv_form.activity_one_consult_date.label_tag}}<br>
-		   			{{ivv_form.activity_one_consult_date}}
-	    		</p>
-	    		<p> {{ivv_form.target_RFP_release_date.label_tag}}<br>
-		    		{{ivv_form.target_RFP_release_date}}
-		    	</p>
+				<div class="column-two toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
+	    		<p> {{state_form.POC_name.label_tag}}<br>
+	    		<p>	{{state_form.POC_name}} </p>
+		    	<p> {{state_form.POC_email.label_tag}} </p>
+		   		<p id="email"> {{state_form.POC_email}} </p>
+		   		<p> {{submitter_form.submitter_name.label_tag}} </p>
+		   		<p>	{{submitter_form.submitter_name}} </p>
+	    		<p> {{submitter_form.submitter_title.label_tag}} </p>
+		    	<p> {{submitter_form.submitter_title}} </p>
 		    </div>
-		   	<div class="column-four" style="width: 300px; height:260px; border: 1px solid green;">
-		   		<p> {{ivv_form.target_IVV_on_board_date.label_tag}}<br>
-		   			{{ivv_form.target_IVV_on_board_date}}
-		   		</p>
-	    		<p> {{ivv_form.next_progress_report_date.label_tag}}<br>
-	    			{{ivv_form.next_progress_report_date}}
-		    	</p>
+		   	<div class="column-three toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
+	    		<p> {{submitter_form.submitter_email.label_tag}} </p>
+	    		<p> {{submitter_form.submitter_email}} </p>
+		    	<p> {{submitter_form.submitter_phone.label_tag}}</p>
+		   		<p>{{submitter_form.submitter_phone}} </p>
+		   		<p> {{ivv_form.activity_one_consult_date.label_tag}} </p>
+		   		<p> {{ivv_form.activity_one_consult_date}} </p>
+	    		<p> {{ivv_form.target_RFP_release_date.label_tag}}</p>
+		    	<p> {{ivv_form.target_RFP_release_date}} </p>
+		    </div>
+		   	<div class="column-four toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
+		   		<p> {{ivv_form.target_IVV_on_board_date.label_tag}}</p>
+		   		<p>	{{ivv_form.target_IVV_on_board_date}} </p>
+	    		<p> {{ivv_form.next_progress_report_date.label_tag}}</p>
+	    		<p>	{{ivv_form.next_progress_report_date}} </p> 
 		    </div>
 		</div>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<div class="exec-summary-header" style="background-color: #39CCCC">
+		<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+		<div id="exec-header"class="exec-summary-header toggleable" style="background-color: #39CCCC; display: none;">
 			<h2> Executive Summary </h2>
 		</div>
-		<div class="instruction">
+		<div id="exec-instructions" class="instruction toggleable" style="display: none;">
 			<p> <strong> Instruction: </strong> Summarize the state's status and its progress below </p>
 		</div>
-		<div class="exec-summary" style="padding-left:10px; padding-bottom: 20px;">
+		<div id="exec-fields" class="exec-summary toggleable" style="padding-left:10px; padding-bottom: 20px; display: none;">
 			<p>{{ivv_form.executive_summary.label_tag}}<br>
 			{{ivv_form.executive_summary}} </p>
 		</div>
-		<div class="proj-manage-header" style="background-color: #39CCCC">
+		<div id="proj-manage-header" class="proj-manage-header toggleable" style="background-color: #39CCCC; display: none;">
 			<h2> Project Management Office Status </h2>
 		</div>
-		<div class="instruction">
+		<div id="proj-manage-instruction" class="instruction toggleable" style="display: none;">
 			<p><strong>Instruction: </strong> Provide budgetary and schedule measurements below (either earned value or some other industry-accepted metrics). Variances are calculated against the budget and schedule in approved IAPD. If the IAPD has not yet been approved, enter N/A. Please enter all dates in the format MM-DD-YY </p>
 		</div>
-		<div class="general-form">
-			<div class="column-one" style="width: 300px; height:260px; border: 1px solid green;">
-				<p> {{ivv_form.total_budget.label_tag}}<br>
-				{{ivv_form.total_budget}}
-				</p>
-				<p>	{{ivv_form.other.label_tag}}<br>
-				{{ivv_form.other}}
-				</p>
+		<div id="proj-manage-fields" class="general-form toggleable" style="display: none;">
+			<div class="column-one toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
+				<p> {{ivv_form.total_budget.label_tag}}</p>
+				<p>{{ivv_form.total_budget}}</p>
+				<p>	{{ivv_form.other.label_tag}}</p>
+				<p> {{ivv_form.other}} </p>
 			</div>
-			<div class="column-two" style="width: 300px; height:260px; border: 1px solid green;">
+			<div class="column-two toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
 				<p> {{ivv_form.earned_value.label_tag}}<br>
 				{{ivv_form.earned_value}}
 				</p>
 			</div>
-			<div class="column-three" style="width: 300px; height:260px; border: 1px solid green;">
+			<div class="column-three toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
 				<p> {{ivv_form.budget_variance.label_tag}}<br>
 				{{ivv_form.budget_variance}}
 				</p>
 			</div>
-			<div class="column-four" style="width: 300px; height:260px; border: 1px solid green;">
+			<div class="column-four toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
 				<p> {{ivv_form.schedule_variance.label_tag}}<br>
 				{{ivv_form.schedule_variance}}
 				</p>
 			</div>
 		</div>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<div class="life-cycle-header" style="background-color: #39CCCC">
+		<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+		<div id="lc-header" class="life-cycle-header toggleable" style="background-color: #39CCCC; display: none;">
 			<h2> Life Cycle Status and Schedule </h2>
 		</div>
-		<div class="instruction">
+		<div id="lc-instructions" class="instruction toggleable" style="display: none;">
 			<p> <strong> Instructions: </strong> For the Life Cycle Status column, use the drop down menu to indicate what milestone review was last <strong> completed </strong> for each module that is, or will be developed. (If a particular legacy module has been certified in the past and there are no plans to update it, choose R3 completed. If a state is transitioning into the MECL between R1 and R2 and its Regional Office has stated that no R1 will be necessary, then mark R1 complete and indicate N/A for the R1 date.) For the other columns, enter the anticipated dates for each milestone. Do not enter a date range. After a milestone review has actually occured, update teh entry to show the last date of the milestone review meeting and be sure to update the Life Cycle Status column. Please enter all dates in the format MM-DD-YY </p>
 		</div>
-		<h3 style="padding-left:15px;"> MITA Business Aligned Modules </h3>
-		<div id="lc-div" style="padding-left:15px;">
+		<div id="lc-title" class="toggleable" style="display: none;">
+			<h3 style="padding-left:15px;"> MITA Business Aligned Modules </h3>
+		</div>
+		<div id="lc-div" style="padding-left:15px; display: none;" class="toggleable">
 			{{ lc_formset.management_form }}
 				{% for form in lc_formset.forms %}
-				<div class="lc">
+				<div id="lc" class="lc toggleable" style="display: none;">
 <!-- 	can't seem to use formsets w a table..
 					<table id ="lc-table" style="width: 100%">
 						<tr>
@@ -416,11 +547,13 @@
 				{% endfor %}
 				<input id="add-lc" type="button" class="btn btn-primary" value="Add Another Module" />
 		</div>
-		<h3 style="padding-left:15px;"> MMIS Functional Modules </h3>
-		<div id="lc2-div" style="padding-left:15px;">
+		<div id="lc2-header" class="toggleable" style="display: none;">
+			<h3 style="padding-left:15px;"> MMIS Functional Modules </h3>
+		</div>
+		<div id="lc2-div" style="padding-left:15px; display: none;" class="toggleable">
 			{{ lc_formset2.management_form }}
 				{% for form in lc_formset2.forms %}
-				<div class='lc2'>
+				<div id="lc2" class='lc2 toggleable' style="display: none;">
 				<!-- <div class="lc2">
 					<table id ="lc2-table" style="width: 100%">
 						<tr>
@@ -439,22 +572,22 @@
 						<p style=""><a class="delete-lc2" href="/">Delete</a></p>
 					</table>
 				</div> -->
-					{{ form.as_p}}
+						{{ form.as_p}}
 					<p style=""><a class="delete-lc2" href="/">Delete</a></p>
 				</div>			
 				{% endfor %}
 				<input id="add-lc2" type="button" class="btn btn-primary" value="Add Another Module" />
 		</div>
-		<div class="risk-header" style="background-color: #39CCCC">
+		<div id="risk-title" class="risk-header toggleable" style="background-color: #39CCCC; display: none;">
 			<h2> Risks </h2>
 		</div>
-		<div class="instruction">
+		<div id="risk-instruction" class="instruction toggleable" style="display: none;">
 			<p> <strong> Instructions: </strong> List important risks. These include any programmatic risks or technical risks arising from IV&V contractor's review of checklists and evidence. Add rows if necessary. Use unique Risk ID, and provide risk title and description. Pick appropriate value from probability and impact drop down choices. Based on your seleciton, risk score will be calculated automatically. Provide resolution date and plan for mitigation (include details) for this risk. Please enter all dates in the format MM-DD-YY </p>
 		</div>
-		<div id="risk-div" style="padding-left:15px;">
+		<div id="risk-div" style="padding-left:15px; display: none;" class="toggleable">
 			{{ risk_formset.management_form }}
 				{% for form in risk_formset.forms %}
-				<div class="risk">
+				<div id="risk" class="risk toggleable" style="display: none;">
 					<!-- table id="risk-table" style="width: 100%">
 						<tr>
 							{% for field in form %}
@@ -478,16 +611,16 @@
 				{% endfor %}
 
 		</div>
-		<div class="rec-header" style="background-color: #39CCCC">
+		<div id="rec-header" class="rec-header toggleable" style="background-color: #39CCCC; display: none;">
 			<h2> Recommendations </h2>
 		</div>
-		<div class="instruction">
+		<div id="rec-instruction" class="instruction toggleable" style="display: none;">
 			<p> <strong> Instructions: </strong> List any recommendations for the state. These include any programmatic recommendations or technical recommendations arising from IV&V contractor's review of checklists and evidence. Add rows if necessary. Please enter all dates in the format MM-DD-YY</p>
 		</div>
-		<div id="rec-div" style="padding-left:15px;">
+		<div id="rec-div" style="padding-left:15px; display:none; display: none;" class="toggleable">
 			{{ rec_formset.management_form }}
 				{% for form in rec_formset.forms %}
-				<div class="rec" style=" padding-top: 15px">
+				<div id="rec" class="rec toggleable" style=" padding-top: 15px; display: none;">
 					<!-- <table id="rec-table" style="width: 100%">
 					<tr>
 						{% for field in form %}
@@ -501,18 +634,45 @@
 					</tr> -->
  				<!-- </table> -->
  					{{form.as_p}}
- 					<p style=""><a class="delete-form" href="/">Delete</a></p>
-				</div>
+ 						<p style=""><a class="delete-form" href="/">Delete</a></p>
 				<!-- {{ form.as_p }} -->
-				<input id="add-rec" type="button" class="btn btn-primary" value ="Add Another Recommendation" />
+						<input id="add-rec" type="button" class="btn btn-primary" value ="Add Another Recommendation" />
+				</div>
 				{% endfor %}
 			
 		</div>		
 		<br>	
-		<div id="submit" align="center">
+		<div style="float: right; padding-top: 100px; padding-right: 50px; display: none;" id="submit" align="center" class="toggleable">
 			<button class="btn btn-primary" type="submit">Submit</button>
 		</div>
 	</form>
+	<div id="introduction" class="toggleable homepage">
+		<h1> Welcome to the first IV&V Form! </h1>
+	</div>
+	<div style="float: right; padding-right: 100px; padding-top: 20px;" class="button-holder toggleable homepage">
+		<button id="next-home-page" class="btn btn-primary">Next</button>
+	</div>
+	<div id="gen-button-next" style="float: right; padding-right: 100px; padding-top: 20px; display: none;" class="button-holder toggleable">
+		<button id="next-gen-page" class="btn btn-primary">Next</button>
+	</div>
+	<div id="gen-button-prev" style="float: left; padding-left: 100px; padding-top: 20px; display: none;" class="button-holder toggleable">
+		<button id="prev-gen-page" class="btn btn-primary">Prev</button>
+	</div>
+	<div id="exec-button-next" style="float: right; padding-right: 100px; padding-top: 20px; display: none;" class="button-holder toggleable">
+		<button id="next-exec-page" class="btn btn-primary">Next</button>
+	</div>
+	<div id="exec-button-prev" style="float: left; padding-left: 100px; padding-top: 20px; display: none;" class="button-holder toggleable">
+		<button id="prev-exec-page" class="btn btn-primary">Prev</button>
+	</div>
+	<div id="lc-button-next" style="float: right; padding-right: 100px; padding-top: 20px; display: none;" class="button-holder toggleable">
+		<button id="next-lc-page" class="btn btn-primary">Next</button>
+	</div>
+	<div id="lc-button-prev" style="float: left; padding-left: 100px; padding-top: 20px; display: none;" class="button-holder toggleable">
+		<button id="prev-lc-page" class="btn btn-primary">Prev</button>
+	</div>
+		<div id="risk-button-prev" style="float: left; padding-left: 100px; padding-top: 20px; display: none;" class="button-holder toggleable">
+		<button id="prev-risk-page" class="btn btn-primary">Prev</button>
+	</div>
 
 
 {% endblock %}

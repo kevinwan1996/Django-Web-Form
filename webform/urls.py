@@ -3,7 +3,8 @@ from . import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-
+from forms import *
+# from views import ContactWizard
 
 urlpatterns = [
 	url(r'^$', views.landing, name='landing'),
@@ -19,7 +20,8 @@ urlpatterns = [
 	# url(r'^email_contact/$', login_required(views.email), name='email_contact'),
 	url(r'email_sent/$', login_required(views.email_sent), name='email_sent'),
 
-
+	#Multi-Step form
+	# url(r'^multi/$', ContactWizard.as_view(GeneralInfoForm, ExecAndBudgetForm)),
 	#login logout
 	url(r'^login/$', views.login, name='login'),
 	url(r'^logout/$', auth_views.logout, {'template_name': 'webform/logged_out.html'}, name='logout')

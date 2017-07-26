@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
-from webform.forms import SignUpForm, StateForm, SubmitterForm, IVVGeneralForm, LCForm, LCForm2, RiskForm, RecForm, EntireForm, EmailForm
+from webform.forms import SignUpForm, StateForm, SubmitterForm, IVVGeneralForm, LCForm, LCForm2, RiskForm, RecForm, EntireForm, EmailForm, GeneralInfoForm, ExecAndBudgetForm
 from .models import *
 from django.forms.formsets import formset_factory
 from django.shortcuts import render_to_response
@@ -31,15 +31,17 @@ from django.core.mail import send_mail
 from StringIO import StringIO
 from django.core.files.base import ContentFile
 import os
+from django.shortcuts import redirect
+from formtools.wizard.views import SessionWizardView
 
 def email(request):
 	if request.method == 'POST':
 		email_form = EmailForm(request.POST, instance=Email())
 		if email_form.is_valid():
 			email_instance = email_form.save()
-			entire_results = Entire.objects.filter(user=request.user).latest('ivv_id')
-			if int(entire_results.ivv_id) == int(IVV.objects.latest('ivv_id').ivv_id):
-				ivv_results = IVV.objects.latest('ivv_id')
+			# entire_results = Entire.objects.filter(user=request.user).latest('ivv_id')
+			# if int(entire_results.ivv_id) == int(IVV.objects.latest('ivv_id').ivv_id):
+			ivv_results = IVV.objects.latest('ivv_id')
 			# ivv_results = IVV.objects.latest('ivv_id')
 			lc_results = LifeCycle.objects.filter(ivv_id=ivv_results.ivv_id)
 			state_results = State.objects.get(state_id=ivv_results.state_id)
@@ -272,6 +274,7 @@ def general(request):
 	LCFormSet = formset_factory(LCForm, max_num=15, formset=RequiredFormSet)
 	LCFormSet2 = formset_factory(LCForm2, max_num=15, formset=RequiredFormSet)
 	if request.method == 'POST':
+		print "reached POST"
 		entire_form = EntireForm(request.POST, instance=Entire())
 		state_form = StateForm(request.POST, instance=State())
 		submitter_form = SubmitterForm(request.POST, instance=Submitter())
@@ -281,7 +284,10 @@ def general(request):
 		risk_formset = RiskFormSet(request.POST, request.FILES, prefix='risk')
 		rec_formset = RecFormSet(request.POST, request.FILES, prefix='rec')	
 		user = request.user
+		print "erorrs are"
+		print state_form.errors, submitter_form.errors, ivv_gen_form.errors, lc_formset.errors, lc_formset2.errors, risk_formset.errors, rec_formset.errors
 		if state_form.is_valid() and submitter_form.is_valid() and ivv_gen_form.is_valid() and lc_formset.is_valid() and lc_formset2.is_valid() and risk_formset.is_valid() and rec_formset.is_valid():
+			print "valid form"
 			entire_instance = entire_form.save(commit=False)
 			state_instance = state_form.save()
 			submitter_instance = submitter_form.save()
@@ -335,9 +341,9 @@ def general(request):
 	return render(request, 'webform/general.html', context)
 
 def display(request):
-	entire_results = Entire.objects.filter(user=request.user).latest('ivv_id')
-	if int(entire_results.ivv_id) == int(IVV.objects.latest('ivv_id').ivv_id):
-		ivv_results = IVV.objects.latest('ivv_id')
+	# entire_results = Entire.objects.filter(user=request.user).latest('ivv_id')
+	# if int(entire_results.ivv_id) == int(IVV.objects.latest('ivv_id').ivv_id):
+	ivv_results = IVV.objects.latest('ivv_id')
 	lc_results = LifeCycle.objects.filter(ivv_id=ivv_results.ivv_id)
 	state_results = State.objects.get(state_id=ivv_results.state_id)
 	submitter_results = Submitter.objects.get(submitter_id=ivv_results.submitter_id)
@@ -353,9 +359,9 @@ def display(request):
 	return render(request, 'webform/display.html', context)
 
 def pdf(request):
-	entire_results = Entire.objects.filter(user=request.user).latest('ivv_id')
-	if int(entire_results.ivv_id) == int(IVV.objects.latest('ivv_id').ivv_id):
-		ivv_results = IVV.objects.latest('ivv_id')
+	# entire_results = Entire.objects.filter(user=request.user).latest('ivv_id')
+	# if int(entire_results.ivv_id) == int(IVV.objects.latest('ivv_id').ivv_id):
+	ivv_results = IVV.objects.latest('ivv_id')
 	lc_results = LifeCycle.objects.filter(ivv_id=ivv_results.ivv_id)
 	state_results = State.objects.get(state_id=ivv_results.state_id)
 	submitter_results = Submitter.objects.get(submitter_id=ivv_results.submitter_id)
@@ -552,7 +558,7 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            auth_login(request, user)
             return redirect('../')
     else:
         form = SignUpForm()
@@ -577,5 +583,4 @@ def login(request):
 		else:
 			error = 'Invalid details entered.'
 		return errorHandler(error)
-	return render(request,'webform/login.html')
-
+	return render(request,'webform/login.html')			 

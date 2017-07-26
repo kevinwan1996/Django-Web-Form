@@ -1,0 +1,64 @@
+	
+<body>
+    <div class="general-header" style="background-color: #39CCCC;">
+		<h2>General Information</h2>
+	</div>
+	<div class="instruction">
+		<p> <strong>Instruction: </strong> This section includes the general information for the progress report. <strong> IV&V Contractor </strong> to enter state name, project name, program name (select from the drop down menu), and provide progress report date. Also include POC info for State, and submitter of this report. Also provide dates for initial consult, IV&V RFP, IV&V on-board, and next progress report. Please enter all dates in the format MM-DD-YY </p>
+	</div>
+	<form method="post">
+		{% csrf_token %}
+	    <div class="general-form">
+		    <div class="column-one" style="width: 300px; height:260px; border: 1px solid green;">
+		   		<p> {{ state_form.state_name.label_tag }}<br> 
+		    		{{ state_form.state_name }}
+				</p>
+				<p> {{ ivv_form.project_name.label_tag}}<br>
+		    		{{ ivv_form.project_name}}
+		  		</p>
+		   		<p> {{ ivv_form.program_name.label_tag}}<br>
+		   			{{ ivv_form.program_name}}
+			   	</p>
+			   	<p> {{ ivv_form.progress_report_date.label_tag}}<br>
+					{{ ivv_form.progress_report_date}}
+		    	</p>
+	    	</div>
+		    	<div class="column-two" style="width: 300px; height:260px; border: 1px solid green;">
+		    	<p> {{state_form.POC_name.label_tag }}<br>
+		    		{{state_form.POC_name}}
+		   		</p>
+		   		<p> {{state_form.POC_email.label_tag}}<br>
+		   			{{state_form.POC_email}}
+		   		</p>
+	    		<p> {{submitter_form.submitter_name.label_tag}}<br>
+	    			{{submitter_form.submitter_name}}
+		    	</p>
+		    	<p> {{submitter_form.submitter_title.label_tag}}<br>
+		   			{{submitter_form.submitter_title}}
+		   		</p>
+		   	</div>
+		   	<div class="column-three" style="width: 300px; height:260px; border: 1px solid green;">
+	    		<p> {{submitter_form.submitter_email.label_tag}}<br>
+	    			{{submitter_form.submitter_email}}
+		    	</p>
+		    	<p> {{submitter_form.submitter_phone.label_tag}}<br>
+		   			{{submitter_form.submitter_phone}}
+		   		</p>
+		   		<p> {{ivv_form.activity_one_consult_date.label_tag}}<br>
+		   			{{ivv_form.activity_one_consult_date}}
+	    		</p>
+	    		<p> {{ivv_form.target_RFP_release_date.label_tag}}<br>
+		    		{{ivv_form.target_RFP_release_date}}
+		    	</p>
+		    </div>
+		   	<div class="column-four" style="width: 300px; height:260px; border: 1px solid green;">
+		   		<p> {{ivv_form.target_IVV_on_board_date.label_tag}}<br>
+		   			{{ivv_form.target_IVV_on_board_date}}
+		   		</p>
+	    		<p> {{ivv_form.next_progress_report_date.label_tag}}<br>
+	    			{{ivv_form.next_progress_report_date}}
+		    	</p>
+		    </div>
+		</div>
+    </form>
+</body>

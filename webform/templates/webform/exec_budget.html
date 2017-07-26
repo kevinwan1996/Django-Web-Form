@@ -1,0 +1,41 @@
+        <div class="exec-summary-header" style="background-color: #39CCCC">
+			<h2> Executive Summary </h2>
+		</div>
+		<div class="instruction">
+			<p> <strong> Instruction: </strong> Summarize the state's status and its progress below </p>
+		</div>
+		<div class="exec-summary" style="padding-left:10px; padding-bottom: 20px;">
+			<p>{{ivv_form.executive_summary.label_tag}}<br>
+			{{ivv_form.executive_summary}} </p>
+		</div>
+		<div class="proj-manage-header" style="background-color: #39CCCC">
+			<h2> Project Management Office Status </h2>
+		</div>
+		<div class="instruction">
+			<p><strong>Instruction: </strong> Provide budgetary and schedule measurements below (either earned value or some other industry-accepted metrics). Variances are calculated against the budget and schedule in approved IAPD. If the IAPD has not yet been approved, enter N/A. Please enter all dates in the format MM-DD-YY </p>
+		</div>
+		<div class="general-form">
+			<div class="column-one" style="width: 300px; height:260px; border: 1px solid green;">
+				<p> {{ivv_form.total_budget.label_tag}}<br>
+				{{ivv_form.total_budget}}
+				</p>
+				<p>	{{ivv_form.other.label_tag}}<br>
+				{{ivv_form.other}}
+				</p>
+			</div>
+			<div class="column-two" style="width: 300px; height:260px; border: 1px solid green;">
+				<p> {{ivv_form.earned_value.label_tag}}<br>
+				{{ivv_form.earned_value}}
+				</p>
+			</div>
+			<div class="column-three" style="width: 300px; height:260px; border: 1px solid green;">
+				<p> {{ivv_form.budget_variance.label_tag}}<br>
+				{{ivv_form.budget_variance}}
+				</p>
+			</div>
+			<div class="column-four" style="width: 300px; height:260px; border: 1px solid green;">
+				<p> {{ivv_form.schedule_variance.label_tag}}<br>
+				{{ivv_form.schedule_variance}}
+				</p>
+			</div>
+		</div>
