@@ -243,15 +243,22 @@
 			document.getElementById('pdf-button').disabled = 'disabled';
 			document.getElementById('pdf-form').submit()
 		}		
+		function disableExcel() {
+			document.getElementById('excel-button').disabled = 'disabled';
+			document.getElementById('excel-form').submit()			
+		}
 	</script>
 	<form action="../pdf" id="pdf-form">
     	<input onclick="disable();" class="btn btn-primary" id="pdf-button" type="submit" value="Generate PDF" style="background-color: #4CAF50;" />
+	</form>
+	<form action="../excel" id="excel-form">
+    	<input onclick="disableExcel();" class="btn btn-primary" id="excel-button" type="submit" value="Generate Excel Doc" style="background-color: #4CAF50; width: 100%;" />
     </form>
 	<form action="../" style="float: right;">
     	<input class="btn btn-primary" id="home-button" type="submit" value="Return Home" style="background-color: #4CAF50; width: 100%" />
     </form>
 	<form action="../email">
-    	<input class="btn btn-primary" id="email-button" type="submit" value="Email this PDF?" style="background-color: #4CAF50; width: 100%;" />
+    	<input class="btn btn-primary" id="email-button" type="submit" value="Email Files" style="background-color: #4CAF50; width: 100%;" />
     </form>
 
 </div>

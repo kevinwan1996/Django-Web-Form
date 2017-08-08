@@ -33,6 +33,7 @@ from django.core.files.base import ContentFile
 import os
 from django.shortcuts import redirect
 from formtools.wizard.views import SessionWizardView
+import pandas as pd
 
 def email(request):
 	if request.method == 'POST':
@@ -224,6 +225,8 @@ def email(request):
 			to_list.append(email_instance.rec_four)
 			email = EmailMessage(email_instance.subject, email_instance.body, to=to_list)
 			email.attach('IV&V_REPORT.pdf',buffer.getvalue(), 'application/pdf' )
+
+
 			email.send()
 			buffer.close()
 			return redirect("../email_sent")
@@ -274,7 +277,6 @@ def general(request):
 	LCFormSet = formset_factory(LCForm, max_num=15, formset=RequiredFormSet)
 	LCFormSet2 = formset_factory(LCForm2, max_num=15, formset=RequiredFormSet)
 	if request.method == 'POST':
-		print "reached POST"
 		entire_form = EntireForm(request.POST, instance=Entire())
 		state_form = StateForm(request.POST, instance=State())
 		submitter_form = SubmitterForm(request.POST, instance=Submitter())
@@ -284,10 +286,7 @@ def general(request):
 		risk_formset = RiskFormSet(request.POST, request.FILES, prefix='risk')
 		rec_formset = RecFormSet(request.POST, request.FILES, prefix='rec')	
 		user = request.user
-		print "erorrs are"
-		print state_form.errors, submitter_form.errors, ivv_gen_form.errors, lc_formset.errors, lc_formset2.errors, risk_formset.errors, rec_formset.errors
 		if state_form.is_valid() and submitter_form.is_valid() and ivv_gen_form.is_valid() and lc_formset.is_valid() and lc_formset2.is_valid() and risk_formset.is_valid() and rec_formset.is_valid():
-			print "valid form"
 			entire_instance = entire_form.save(commit=False)
 			state_instance = state_form.save()
 			submitter_instance = submitter_form.save()
@@ -357,6 +356,41 @@ def display(request):
 			   'risk_results':risk_results
 	}
 	return render(request, 'webform/display.html', context)
+def excel(request):
+	ivv_results = IVV.objects.latest('ivv_id')
+	lc_results = LifeCycle.objects.filter(ivv_id=ivv_results.ivv_id)
+	state_results = State.objects.get(state_id=ivv_results.state_id)
+	submitter_results = Submitter.objects.get(submitter_id=ivv_results.submitter_id)
+	rec_results = Recommendations.objects.filter(ivv_id=ivv_results.ivv_id)
+	risk_results = Risk.objects.filter(ivv_id=ivv_results.ivv_id)
+	
+	response = HttpResponse(content_type='application/ms-excel')
+	response['Content-Disposition'] = 'attachment; filename="IV&V_REPORT.xlsx"'
+	buffer_excel = StringIO()
+	# doc = SimpleDocTemplate(buffer)
+
+	# response.write(buffer.getvalue())
+	# buffer.close()
+	
+	df = pd.DataFrame({'General': []})
+	writer = pd.ExcelWriter(buffer_excel, engine='xlsxwriter')
+	df.to_excel(writer, sheet_name="IV&V", index=False)
+	df_state = pd.DataFrame({'State': [state_results.state_name]})
+	df_state.to_excel(writer, sheet_name="IV&V", index=False, startrow=3, startcol=0)
+	df_project = pd.DataFrame({'Project Name' : [ivv_results.project_name]})
+	df_project.to_excel(writer, sheet_name="IV&V", index=False, startrow=3, startcol=1)
+	df_program = pd.DataFrame({'Program Name' : [ivv_results.program_name]})
+	df_program.to_excel(writer, sheet_name="IV&V", index=False, startrow=3, startcol=2)
+	df_prog_date = pd.DataFrame({'Program Report Date' : [ivv_results.progress_report_date]})
+	df_prog_date.to_excel(writer, sheet_name="IV&V", index=False, startrow=3, startcol=3)
+
+	writer.save()
+
+	buffer_excel.seek(0)
+	response.write(buffer_excel.getvalue())
+
+	return response
+
 
 def pdf(request):
 	# entire_results = Entire.objects.filter(user=request.user).latest('ivv_id')

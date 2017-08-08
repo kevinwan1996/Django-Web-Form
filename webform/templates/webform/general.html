@@ -55,12 +55,31 @@
 	      // Clone a form (without event handlers) from the first form
 	      var row = $(".rec:first").clone(false).get(0);
 	      // Insert it after the last form
-	      $(row).removeAttr('id').hide().insertAfter(".rec:last").slideDown(300);
-	      
+				$(row).find("input").val("");
+				$(row).find("textarea").val("");
+	      // Insert it after the last form
+				var table = $(row).find('.rec-table td');
+				$(table).each(function() {
+					var id = ($(this).children().first().attr('id'));
+					var name = ($(this).children().first().attr('name'));
+					var updated_name = name.substring(0,4) + String(formCount) + name.substring(5, name.length);
+					var updated_id = id.substring(0,7) + String(formCount) + id.substring(8, id.length);
+					$(this).children().first().attr('id', updated_id);
+					$(this).children().first().attr('name', updated_name);
+					console.log($(this).children().first());
+				});
+				var headers = $(row).find('.rec-table th');
+				$(headers).each(function() {
+					var to_replace = ($(this).children().first().attr('for'));
+					var updated_for = to_replace.substring(0,7) + String(formCount) + to_replace.substring(8, to_replace.length);
+					$(this).children().first().attr('for', updated_for);
+				});
 	      // Remove the bits we don't want in the new row/form
 	      // e.g. error messages
-	      $(".errorlist", row).remove();
-	      $(row).children().removeClass('error');
+				$(row).removeAttr('id').hide().insertAfter(".rec:last").slideDown(300);
+
+	      // $(".errorlist", row).remove();
+	      // $(row).children().removeClass('error');
 	      
 	      // Relabel/rename all the relevant bits
 	      $(row).children().children().each(function() {
@@ -110,11 +129,29 @@
 	      var row = $(".risk:first").clone(false).get(0);
 	      // Insert it after the last form
 	      $(row).removeAttr('id').hide().insertAfter(".risk:last").slideDown(300);
-	      
+				$(row).find("input").val("");
+				$(row).find("textarea").val("");
+
+				var table = $(row).find('.risk-table td');
+				$(table).each(function() {
+					var id = ($(this).children().first().attr('id'));
+					var name = ($(this).children().first().attr('name'));
+					var updated_name = name.substring(0,5) + String(formCount) + name.substring(6, name.length);
+					var updated_id = id.substring(0,8) + String(formCount) + id.substring(9, id.length);
+					$(this).children().first().attr('id', updated_id);
+					$(this).children().first().attr('name', updated_name);
+					console.log($(this).children().first());
+				});
+				var headers = $(row).find('.risk-table th');
+				$(headers).each(function() {
+					var to_replace = ($(this).children().first().attr('for'));
+					var updated_for = to_replace.substring(0,8) + String(formCount) + to_replace.substring(9, to_replace.length);
+					$(this).children().first().attr('for', updated_for);
+				});
 	      // Remove the bits we don't want in the new row/form
 	      // e.g. error messages
-	      $(".errorlist", row).remove();
-	      $(row).children().removeClass('error');
+	      // $(".errorlist", row).remove();
+	      // $(row).children().removeClass('error');
 	      
 	      // Relabel/rename all the relevant bits
 	      $(row).children().children().each(function() {
@@ -162,13 +199,31 @@
 	    if (formCount < 10) {
 	      // Clone a form (without event handlers) from the first form
 	      var row = $(".lc2:first").clone(false).get(0);
+				$(row).find("input").val("");
+
+				var table = $(row).find('.lc-table td');
+				$(table).each(function() {
+					var id = ($(this).children().first().attr('id'));
+					var name = ($(this).children().first().attr('name'));
+					var updated_name = name.substring(0,4) + String(formCount) + name.substring(5, name.length);
+					var updated_id = id.substring(0,7) + String(formCount) + id.substring(8, id.length);
+					$(this).children().first().attr('id', updated_id);
+					$(this).children().first().attr('name', updated_name);
+					console.log($(this).children().first());
+				});
+				var headers = $(row).find('.lc-table th');
+				$(headers).each(function() {
+					var to_replace = ($(this).children().first().attr('for'));
+					var updated_for = to_replace.substring(0,7) + String(formCount) + to_replace.substring(8, to_replace.length);
+					$(this).children().first().attr('for', updated_for);
+				});
 	      // Insert it after the last form
 	      $(row).removeAttr('id').hide().insertAfter(".lc2:last").slideDown(300);
 	      
 	      // Remove the bits we don't want in the new row/form
 	      // e.g. error messages
-	      $(".errorlist", row).remove();
-	      $(row).children().removeClass('error');
+	      // $(".errorlist", row).remove();
+	      // $(row).children().removeClass('error');
 	      
 	      // Relabel/rename all the relevant bits
 	      $(row).children().children().each(function() {
@@ -216,13 +271,30 @@
 	    if (formCount < 10) {
 	      // Clone a form (without event handlers) from the first form
 	      var row = $(".lc:first").clone(false).get(0);
+				$(row).find("input").val("");
 	      // Insert it after the last form
+				var table = $(row).find('.lc-table td');
+				$(table).each(function() {
+					var id = ($(this).children().first().attr('id'));
+					var name = ($(this).children().first().attr('name'));
+					var updated_name = name.substring(0,3) + String(formCount) + name.substring(4, name.length);
+					var updated_id = id.substring(0,6) + String(formCount) + id.substring(7, id.length);
+					$(this).children().first().attr('id', updated_id);
+					$(this).children().first().attr('name', updated_name);
+					console.log($(this).children().first());
+				});
+				var headers = $(row).find('.lc-table th');
+				$(headers).each(function() {
+					var to_replace = ($(this).children().first().attr('for'));
+					var updated_for = to_replace.substring(0,6) + String(formCount) + to_replace.substring(7, to_replace.length);
+					$(this).children().first().attr('for', updated_for);
+				});
 	      $(row).removeAttr('id').hide().insertAfter(".lc:last").slideDown(300);
 	      
 	      // Remove the bits we don't want in the new row/form
 	      // e.g. error messages
-	      $(".errorlist", row).remove();
-	      $(row).children().removeClass('error');
+	      // $(".errorlist", row).remove();
+	      // $(row).children().removeClass('error');
 	      
 	      // Relabel/rename all the relevant bits
 	      $(row).children().children().each(function() {
@@ -242,52 +314,86 @@
 	      alert("Sorry, you can only enter a maximum of ten items.");
 	    }
 	    return false;
-	  }
+		}
+		function validateEmail(email) {
+			var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    	return re.test(email);
+		}
+		function validatePhone(phone) {
+			var re = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/
+			return re.test(phone);
+		}
+		function validateDate(date) {
+			var re = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/
+			return re.test(date);
+		}
 		function showhide(headerId, instructionId, fieldId, button1, button2, headerId2, instructionId2, fieldId2) {
 			headerId2 = headerId2 || 0;
 			instructionId2 = instructionId2 || 0;
 			fieldId2 = fieldId2 || 0;
 
-			
-
-			document.body.scrollTop = document.documentElement.scrollTop = 0;
-			var divs = (document.getElementsByClassName("toggleable"));
-			var divsArray = Array.prototype.slice.call(divs);
-
-
-			var header = document.getElementById(headerId);
-			var instruction = document.getElementById(instructionId);
-			var field = document.getElementById(fieldId);
-			var next = document.getElementById(button1);
-			var prev = document.getElementById(button2);
-
-			divsArray.forEach(function(entry) {
-				entry.style.display = 'none';
-			})
-
-			header.style.display = 'block';
-			instruction.style.display = 'block';
-			field.style.display = 'block';
-
-			var columns = field.getElementsByTagName('div');
-			for (var i = 0; i < columns.length; i++) {
-				columns[i].style.display = 'block';
-			}
-			if (headerId2 != 0 && instructionId2 != 0 && fieldId2 != 0) {
-				var header2 = document.getElementById(headerId2);
-				var instruction2 = document.getElementById(instructionId2);
-				var field2 = document.getElementById(fieldId2);		
-
-				header2.style.display = 'block';
-				instruction2.style.display = 'block';
-				field2.style.display = 'block';
-				var columns2 = field2.getElementsByTagName('div');
-				for (var j = 0; j < columns2.length; j++) {
-					columns2[j].style.display = 'block';
+			//check the emails 
+			var poc_email = document.getElementById('state_POC_email');
+			if ($('#state_POC_email').is(':visible') && !validateEmail) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The email address is improperly formatted";
+				if ($('#email > p').length < 1) {
+					document.getElementById("email").appendChild(error);
 				}
+			} 
+			var submitter_email = document.getElementById('id_submitter_email');
+			if ($('#id_submitter_email').is(':visible') && submitter_email.value.indexOf('@') == -1) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The email address is improperly formatted";
+				if ($('#submitter-email > p').length < 1) {
+					document.getElementById("submitter-email").appendChild(error);
+				}
+			} 
+			else {
+				document.body.scrollTop = document.documentElement.scrollTop = 0;
+				var divs = (document.getElementsByClassName("toggleable"));
+				var divsArray = Array.prototype.slice.call(divs);
+
+
+				var header = document.getElementById(headerId);
+				var instruction = document.getElementById(instructionId);
+				var field = document.getElementById(fieldId);
+				var next = document.getElementById(button1);
+				var prev = document.getElementById(button2);
+
+				divsArray.forEach(function(entry) {
+					entry.style.display = 'none';
+				})
+
+				header.style.display = 'block';
+				instruction.style.display = 'block';
+				field.style.display = 'block';
+
+				var columns = field.getElementsByTagName('div');
+				for (var i = 0; i < columns.length; i++) {
+					columns[i].style.display = 'block';
+				}
+				if (headerId2 != 0 && instructionId2 != 0 && fieldId2 != 0) {
+					var header2 = document.getElementById(headerId2);
+					var instruction2 = document.getElementById(instructionId2);
+					var field2 = document.getElementById(fieldId2);		
+
+					header2.style.display = 'block';
+					instruction2.style.display = 'block';
+					field2.style.display = 'block';
+					var columns2 = field2.getElementsByTagName('div');
+					for (var j = 0; j < columns2.length; j++) {
+						columns2[j].style.display = 'block';
+					}
+				}
+				next.style.display = 'block';
+				prev.style.display = 'block';
 			}
-			next.style.display = 'block';
-			prev.style.display = 'block';
+			// console.log(document.getElementById('id_state_name').value);
 		}
 		function showhideLC(headerId, instructionId, titleId1, containerId, lcId, titleId2, containerId2, lcId2, button1, button2) {
 			document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -333,17 +439,6 @@
 				homepages[k].style.display = 'block';
 			}
 		}
-		function checkEmail() {
-			console.log("Function is called");
-			if (document.getElementById('header-1').value == 'General Information') {
-				alert('emails is wrong');
-				return false;
-			}
-			return false;
-		}
-		$("#submit").click(function () {
-			console.log("HELLO BITCH")
-		})
 	  // Register the click event handlers
 	  //event handlers for recommendations
 	  $("#add-rec").click(function() {
@@ -369,6 +464,9 @@
 	  $("#add-lc").click(function() {
 	    return addFormLC(this, 'lc');
 	  });
+		// $("#add-lc").click(function() {
+	  //     $('#id_lc-TOTAL_FORMS').val(10); 
+		// })
 	  $(".delete-lc").click(function() {
 	    return deleteFormLC(this, 'lc');
 		});
@@ -380,6 +478,8 @@
 			return showhide('exec-header', 'exec-instructions', 'exec-fields', 'exec-button-next', 'exec-button-prev', 'proj-manage-header', 'proj-manage-instruction', 'proj-manage-fields');
 		});		
 		$("#lc-button").click(function() {
+			// $('#id_lc-TOTAL_FORMS').val(10);
+			// $('#id_lc-INITIAL_FORMS').val(10);
 			return showhideLC('lc-header', 'lc-instructions', 'lc-title', 'lc-div', 'lc', 'lc2-header', 'lc2-div', 'lc2', 'lc-button-next', 'lc-button-prev');
 		});
 		$("#risk-button").click(function() {
@@ -393,6 +493,8 @@
 			return showhide('exec-header', 'exec-instructions', 'exec-fields', 'exec-button-next', 'exec-button-prev', 'proj-manage-header', 'proj-manage-instruction', 'proj-manage-fields');
 		});	
 		$("#next-exec-page").click(function() {
+			// $('#id_lc-TOTAL_FORMS').val(10);
+			// $('#id_lc-INITIAL_FORMS').val(10);
 			return showhideLC('lc-header', 'lc-instructions', 'lc-title', 'lc-div', 'lc', 'lc2-header', 'lc2-div', 'lc2', 'lc-button-next', 'lc-button-prev');
 		});
 		$("#next-lc-page").click(function() {
@@ -411,6 +513,118 @@
 		$("#prev-risk-page").click(function() {
 			return showhideLC('lc-header', 'lc-instructions', 'lc-title', 'lc-div', 'lc', 'lc2-header', 'lc2-div', 'lc2', 'lc-button-next', 'lc-button-prev');
 		});
+		$("#state_POC_email").change(function() {
+			if (!validateEmail(this.value)) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The email address is improperly formatted";
+				if ($('#email > p').length < 1) {
+					document.getElementById("email").appendChild(error);
+				}
+			}
+			else {
+				if ($('#email > p').length == 1) {
+					document.getElementById("email").removeChild(document.getElementById('email').lastChild);
+				}
+			}		
+		});
+		$("#id_submitter_email").change(function() {
+			if (!validateEmail(this.value)) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The email address is improperly formatted";
+				if ($('#submitter-email > p').length < 1) {
+					document.getElementById("submitter-email").appendChild(error);
+				}
+			}
+			else {
+				if ($('#submitter-email > p').length == 1) {
+					document.getElementById("submitter-email").removeChild(document.getElementById('submitter-email').lastChild);
+				}
+			}		
+		});
+		$("#id_submitter_phone").change(function() {
+			if (!validatePhone(this.value)) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The phone number is improperly formatted use ex. '9999999999'";
+				if ($('#submitter-phone > p').length < 1) {
+					document.getElementById("submitter-phone").appendChild(error);
+				}
+			}
+			else {
+				if ($('#submitter-phone > p').length == 1) {
+					document.getElementById("submitter-phone").removeChild(document.getElementById('submitter-phone').lastChild);
+				}
+			}		
+		});
+		$("#id_activity_one_consult_date").change(function() {
+			if (!validateDate(this.value)) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The date must be in the format MM/DD/YYYY and between 1900 and 2099";
+				if ($('#activity_one_date > p').length < 1) {
+					document.getElementById("activity_one_date").appendChild(error);
+				}
+			}
+			else {
+				if ($('#activity_one_date > p').length == 1) {
+					document.getElementById("activity_one_date").removeChild(document.getElementById('activity_one_date').lastChild);
+				}
+			}		
+		});
+		$("#id_target_RFP_release_date").change(function() {
+			if (!validateDate(this.value)) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The date must be in the format MM/DD/YYYY and between 1900 and 2099";
+				if ($('#target_release_date > p').length < 1) {
+					document.getElementById("target_release_date").appendChild(error);
+				}
+			}
+			else {
+				if ($('#target_release_date > p').length == 1) {
+					document.getElementById("target_release_date").removeChild(document.getElementById('target_release_date').lastChild);
+				}
+			}		
+		});
+		$("#id_target_IVV_on_board_date").change(function() {
+			if (!validateDate(this.value)) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The date must be in the format MM/DD/YYYY and between 1900 and 2099";
+				if ($('#onboard_date > p').length < 1) {
+					document.getElementById("onboard_date").appendChild(error);
+				}
+			}
+			else {
+				if ($('#onboard_date > p').length == 1) {
+					document.getElementById("onboard_date").removeChild(document.getElementById('onboard_date').lastChild);
+				}
+			}		
+		});
+		$("#id_next_progress_report_date").change(function() {
+			if (!validateDate(this.value)) {
+				var error = document.createElement('p');
+				error.style.color = "Red";
+				error.style.fontSize = "small";
+				error.innerHTML = "The date must be in the format MM/DD/YYYY and between 1900 and 2099";
+				if ($('#progress_date > p').length < 1) {
+					document.getElementById("progress_date").appendChild(error);
+				}
+			}
+			else {
+				if ($('#progress_date > p').length == 1) {
+					document.getElementById("progress_date").removeChild(document.getElementById('progress_date').lastChild);
+				}
+			}		
+		});
 	});
 	</script>
 	<nav class="pages">
@@ -423,10 +637,10 @@
 	<div id="general-title" class="toggleable" style="background-color: #39CCCC; display: none;">
 		<h2 id="header-1" >General Information</h2>
 	</div>
-	<div id="general-instruction" class="instruction toggleable" style="display:none; white-space: nowrap; overflow: hidden;">  
-		<p> <strong>Instruction: </strong> This section includes the general information for the progress report. <strong> IV&V Contractor </strong> to enter state name, project name, program name (select from the drop down menu), and provide progress report date. Also include POC info for State, and submitter of this report. Also provide dates for initial consult, IV&V RFP, IV&V on-board, and next progress report. Please enter all dates in the format MM-DD-YY </p>
+	<div id="general-instruction" class="instruction toggleable" style="display:none;">  
+		<p> <strong>Instruction: </strong> This section includes the general information for the progress report. <strong> IV&V Contractor </strong> to enter state name, project name, program name (select from the drop down menu), and provide progress report date. Also include POC info for State, and submitter of this report. Also provide dates for initial consult, IV&V RFP, IV&V on-board, and next progress report. Please enter all dates in the format MM/DD/YYYY </p>
 	</div>
-	<form method="post" onSubmit="return checkEmail(this);">
+	<form method="post" onsubmit="return checkEmail(this);">
 		{% csrf_token %}
 	    <div id="general-field" class="toggleable" style="display: none">
 		    <div class="column-one toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
@@ -451,19 +665,19 @@
 		    </div>
 		   	<div class="column-three toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
 	    		<p> {{submitter_form.submitter_email.label_tag}} </p>
-	    		<p> {{submitter_form.submitter_email}} </p>
+	    		<p id="submitter-email"> {{submitter_form.submitter_email}} </p>
 		    	<p> {{submitter_form.submitter_phone.label_tag}}</p>
-		   		<p>{{submitter_form.submitter_phone}} </p>
+		   		<p id="submitter-phone">{{submitter_form.submitter_phone}} </p>
 		   		<p> {{ivv_form.activity_one_consult_date.label_tag}} </p>
-		   		<p> {{ivv_form.activity_one_consult_date}} </p>
+		   		<p id="activity_one_date"> {{ivv_form.activity_one_consult_date}} </p>
 	    		<p> {{ivv_form.target_RFP_release_date.label_tag}}</p>
-		    	<p> {{ivv_form.target_RFP_release_date}} </p>
+		    	<p id="target_release_date"> {{ivv_form.target_RFP_release_date}} </p>
 		    </div>
 		   	<div class="column-four toggleable" style="width: 300px; height:300px; border: 1px solid green; display: none;">
 		   		<p> {{ivv_form.target_IVV_on_board_date.label_tag}}</p>
-		   		<p>	{{ivv_form.target_IVV_on_board_date}} </p>
+		   		<p id="onboard_date">	{{ivv_form.target_IVV_on_board_date}} </p>
 	    		<p> {{ivv_form.next_progress_report_date.label_tag}}</p>
-	    		<p>	{{ivv_form.next_progress_report_date}} </p> 
+	    		<p id="progress_date">	{{ivv_form.next_progress_report_date}} </p> 
 		    </div>
 		</div>
 		<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br> -->
@@ -520,29 +734,29 @@
 			{{ lc_formset.management_form }}
 				{% for form in lc_formset.forms %}
 				<div id="lc" class="lc toggleable" style="display: none;">
-<!-- 	can't seem to use formsets w a table..
-					<table id ="lc-table" style="width: 100%">
+ 	<!-- can't seem to use formsets w a table.. -->
+					 <table class="lc-table"style="width: 100%">
 						<tr>
 							{% for field in form %} 
-								{% if field.help_text %}
+								<!-- {% if field.help_text %}
 									<p> {{ field.help_text }}
-								{% endif %}
+								{% endif %} -->
 								<th> {{ field.label_tag }} </th>
 							{% endfor %}
 						</tr>
-						<tr id="lc-row">
+						<tr>
 							{% for field in form %} 
 								<td> {{ field }} </td>
-								{% for error in field.errors %}
+								<!-- {% for error in field.errors %}
 								<p style="color: red"> {{ error }} </p>
-								{% endfor %}
+								{% endfor %} -->
 							{% endfor %}
 						</tr>
 
-						<p style=""><a class="delete-lc" href="/">Delete</a></p>
-					</table> -->
-					{{ form.as_p}}
-					<p style=""><a class="delete-lc" href="/">Delete</a></p>
+						<!-- <p style=""><a class="delete-lc" href="/">Delete</a></p> -->
+					</table>  
+					<!-- {{ form.as_p}} -->
+					 <p style=""><a class="delete-lc" href="/">Delete</a></p> 
 				</div>
 				{% endfor %}
 				<input id="add-lc" type="button" class="btn btn-primary" value="Add Another Module" />
@@ -554,25 +768,23 @@
 			{{ lc_formset2.management_form }}
 				{% for form in lc_formset2.forms %}
 				<div id="lc2" class='lc2 toggleable' style="display: none;">
-				<!-- <div class="lc2">
-					<table id ="lc2-table" style="width: 100%">
+					<table class ="lc-table" style="width: 100%">
 						<tr>
 							{% for field in form %} 
 								<th> {{ field.label_tag }} </th>
 							{% endfor %}
 						</tr>
-						<tr id="lc2-row">
+						<tr>
 							{% for field in form %} 
 								<td> {{ field }} </td>
 							{% endfor %}
 						</tr>
 						{% for error in field.errors %}
 				          	<p style="color: red">{{ error }}</p>
-				        	{% endfor %}
-						<p style=""><a class="delete-lc2" href="/">Delete</a></p>
+				    {% endfor %}
+						<!-- <p style=""><a class="delete-lc2" href="/">Delete</a></p> -->
 					</table>
-				</div> -->
-						{{ form.as_p}}
+						<!-- {{ form.as_p}} -->
 					<p style=""><a class="delete-lc2" href="/">Delete</a></p>
 				</div>			
 				{% endfor %}
@@ -588,7 +800,7 @@
 			{{ risk_formset.management_form }}
 				{% for form in risk_formset.forms %}
 				<div id="risk" class="risk toggleable" style="display: none;">
-					<!-- table id="risk-table" style="width: 100%">
+					 <table class="risk-table" style="width: 100%">
 						<tr>
 							{% for field in form %}
 								<th> {{field.label_tag}} </th>
@@ -602,9 +814,8 @@
 						{% for error in field.errors %}
 				          	<p style="color: red">{{ error }}</p>
 				        	{% endfor %}
-					<p style=""><a class="delete-risk" href="/">Delete</a></p>
-					</table> -->
-					{{form.as_p}}
+					</table> 
+					<!-- {{form.as_p}} -->
 					<p style=""><a class="delete-risk" href="/">Delete</a></p>
 				</div>
 				<input id="add-risk" type="button" class="btn btn-primary"  value="Add Another Risk" />
@@ -621,7 +832,7 @@
 			{{ rec_formset.management_form }}
 				{% for form in rec_formset.forms %}
 				<div id="rec" class="rec toggleable" style=" padding-top: 15px; display: none;">
-					<!-- <table id="rec-table" style="width: 100%">
+					 <table class="rec-table" style="width: 100%">
 					<tr>
 						{% for field in form %}
 							<th> {{field.label_tag}} </th>
@@ -631,11 +842,10 @@
 						{% for field in form %}
 							<td> {{field}} </td>
 						{% endfor %}
-					</tr> -->
- 				<!-- </table> -->
- 					{{form.as_p}}
+					</tr> 
+ 				 </table> 
+ 					<!-- {{form.as_p}} -->
  						<p style=""><a class="delete-form" href="/">Delete</a></p>
-				<!-- {{ form.as_p }} -->
 						<input id="add-rec" type="button" class="btn btn-primary" value ="Add Another Recommendation" />
 				</div>
 				{% endfor %}

@@ -125,8 +125,8 @@ MEDIA_URL = '/media/'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'kevinwan1996@gmail.com'
-EMAIL_HOST_PASSWORD = 'kevinisawesome'
+# HAVE TO CHANGE THIS INTO A REAL GMAIL ACCOUNT W USERNAME AND PASSWORD
+EMAIL_HOST_USER = 'example@gmail.com'
+EMAIL_HOST_PASSWORD = 'example'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/Users/Kevin/Documents/work/ivv/webform/static'

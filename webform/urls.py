@@ -16,6 +16,7 @@ urlpatterns = [
 	url(r'^display/$', login_required(views.display), name = 'display'),
 
 	url(r'^pdf/$', login_required(views.pdf), name='pdf'),
+	url(r'^excel/$', login_required(views.excel), name='excel'),
 	url(r'^email/$', login_required(views.email), name='email'),
 	# url(r'^email_contact/$', login_required(views.email), name='email_contact'),
 	url(r'email_sent/$', login_required(views.email_sent), name='email_sent'),
